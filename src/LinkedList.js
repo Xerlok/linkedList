@@ -70,4 +70,26 @@ export default class LinkedList {
       console.error(e);
     }
   }
+
+  contains(data) {
+    let currentNode = this.head;
+    while (currentNode.nextNode != null) {
+      if (currentNode.data === data) {
+        return true;
+      }
+      currentNode = currentNode.nextNode;
+    }
+    if (currentNode.data === data) {
+      return true;
+    }
+    return false;    
+  }
+
+  find(data) {
+    let index;
+    let currentNode = this.head;
+    while (currentNode.nextNode != null) {
+      
+    }
+  }
 }
