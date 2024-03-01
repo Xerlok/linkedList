@@ -7,6 +7,7 @@ export default class LinkedList {
     this.size = 0;
   }
 
+  // adds a new node containing value to the end of the list
   append(data) {
     const newNode = new Node(data);
     if (this.head === null) { this.head = newNode; } else {
@@ -17,6 +18,7 @@ export default class LinkedList {
     this.size += 1;
   }
 
+  // adds a new node containing value to the start of the list
   prepend(data) {
     const newNode = new Node(data);
     newNode.nextNode = this.head;
@@ -38,6 +40,7 @@ export default class LinkedList {
     return currentNode;
   }
 
+  // returns the node at the given index
   listAt(index) {
     let currentNode = this.head;
     if (index === 0) { return this.head; }
@@ -47,6 +50,7 @@ export default class LinkedList {
     return currentNode;
   }
 
+  // removes the last element from the list
   pop() {
     if (this.head === null) { 
       throw new Error('No items in the list!');
@@ -82,14 +86,34 @@ export default class LinkedList {
     if (currentNode.data === data) {
       return true;
     }
-    return false;    
+    return false;
   }
 
   find(data) {
-    let index;
+    let index = 0;
     let currentNode = this.head;
     while (currentNode.nextNode != null) {
-      
+      if (currentNode.data === data) {
+        return index;
+      }
+      currentNode = currentNode.nextNode;
+      index += 1;
     }
+    return index;
+  }
+
+  toString() {
+    const nodesData = [];
+    let currentNode = this.head;
+    while (currentNode.nextNode != null) {
+      nodesData.push(currentNode.data);
+      currentNode = currentNode.nextNode;
+    }
+    nodesData.push(currentNode.data);
+    return nodesData;
+  }
+
+  insertAt(data, index) {
+    
   }
 }
