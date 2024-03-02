@@ -1,4 +1,4 @@
-/*eslint-disable*/
+
 import Node from './Node';
 
 export default class LinkedList {
@@ -52,7 +52,7 @@ export default class LinkedList {
 
   // removes the last element from the list
   pop() {
-    if (this.head === null) { 
+    if (this.head === null) {
       throw new Error('No items in the list!');
     }
     try {
@@ -113,7 +113,57 @@ export default class LinkedList {
     return nodesData;
   }
 
+  // inserts a new node with the provided value at the given index
   insertAt(data, index) {
-    
+    const newNode = new Node(data);
+    if (this.head === null && index === 0) {
+      this.head = newNode;
+      this.size += 1;
+      return;
+    }
+    if (index > (this.size - 1)) {
+      throw new Error('List is smaller than this!');
+    }
+    try {
+      let currentNode = this.head;
+      let previousNode = null;
+      if (index === 0) {
+        newNode.nextNode = this.head;
+        this.head = newNode;
+      }
+      for (let i = 0; i < index; i += 1) {
+        previousNode = currentNode;
+        currentNode = currentNode.nextNode;
+      }
+      if (previousNode != null) { previousNode.nextNode = newNode; }
+      newNode.nextNode = currentNode;
+      this.size += 1;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // removes the node at the given index
+  removeAt(index) {
+    try {
+      if (this.head === null) {
+        throw new Error('The list is empty!');
+      }
+      if (index === 0) {
+        this.head = this.head.nextNode;
+        this.size -= 1;
+        return;
+      }
+      let currentNode = this.head;
+      let previousNode = null;
+      for (let i = 0; i < index; i += 1) {
+        previousNode = currentNode;
+        currentNode = currentNode.nextNode;
+      }
+      previousNode.nextNode = currentNode.nextNode;
+      this.size -= 1;
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
