@@ -1,4 +1,3 @@
-
 import Node from './Node';
 
 export default class LinkedList {
@@ -75,6 +74,7 @@ export default class LinkedList {
     }
   }
 
+  // returns true or false if node contains data
   contains(data) {
     let currentNode = this.head;
     while (currentNode.nextNode != null) {
@@ -102,6 +102,7 @@ export default class LinkedList {
     return index;
   }
 
+  // should make a string out of the List but makes an array for now
   toString() {
     const nodesData = [];
     let currentNode = this.head;
